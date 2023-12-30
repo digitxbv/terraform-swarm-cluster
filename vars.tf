@@ -29,3 +29,13 @@ variable "my_ip_addresses" {
     "::/0"
   ]
 }
+
+variable "default_user" {
+  description = "Default user"
+  type        = string
+}
+
+variable "default_email" {
+  description = "Default user email"
+  type        = string
+}

@@ -17,3 +17,13 @@ resource "docker_network" "loki" {
   name   = "loki_logs"
   driver = "overlay"
 }
+
+resource "docker_network" "mysql" {
+  name   = "mysql_db"
+  driver = "overlay"
+}
+
+resource "docker_network" "postgres" {
+  name   = "postgres_db"
+  driver = "overlay"
+}
