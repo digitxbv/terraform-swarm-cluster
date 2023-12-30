@@ -12,3 +12,8 @@ resource "docker_network" "prometheus" {
   name   = "prom_metrics"
   driver = "overlay"
 }
+
+resource "docker_network" "loki" {
+  name   = "loki_logs"
+  driver = "overlay"
+}

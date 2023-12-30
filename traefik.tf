@@ -93,9 +93,6 @@ resource "docker_service" "traefik" {
       ]
     }
   }
-  mode {
-    global = true
-  }
   endpoint_spec {
     ports {
       target_port    = 80

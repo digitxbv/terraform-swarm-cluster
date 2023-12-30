@@ -1,0 +1,42 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: "docker"
+    dockerswarm_sd_configs:
+      - host: tcp://socat_app:2375
+        role: nodes
+    relabel_configs:
+      - source_labels: [__meta_dockerswarm_node_address]
+        target_label: __address__
+        replacement: $1:9323
+      - source_labels: [__meta_dockerswarm_node_hostname]
+        target_label: instance
+
+  - job_name: "swarm"
+    dockerswarm_sd_configs:
+      - host: tcp://socat_app:2375
+        role: tasks
+    relabel_configs:
+      - source_labels: [__meta_dockerswarm_task_desired_state]
+        regex: running
+        action: keep
+      - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
+        regex: .+
+        action: keep
+      - source_labels: [__meta_dockerswarm_network_name]
+        regex: prom_metrics
+        action: keep
+      - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
+        target_label: job
+      - source_labels: [__address__]
+        target_label: real_target
+        regex: "([^:]+):\\d+"
+      - source_labels:
+          [real_target, __meta_dockerswarm_service_label_prometheus_job_port]
+        separator: ":"
+        target_label: __address__
+        replacement: $1
+      - source_labels: [__meta_dockerswarm_node_hostname]
+        target_label: instance
+        replacement: $1

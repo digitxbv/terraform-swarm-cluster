@@ -4,6 +4,9 @@ resource "docker_service" "socat" {
     label = "com.docker.stack.namespace"
     value = local.stack_namespaces.socat
   }
+  mode {
+    global = true
+  }
   task_spec {
     container_spec {
       labels {
@@ -29,8 +32,5 @@ resource "docker_service" "socat" {
         "node.role == manager"
       ]
     }
-  }
-  mode {
-    global = true
   }
 }
