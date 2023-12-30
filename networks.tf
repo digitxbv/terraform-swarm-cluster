@@ -8,6 +8,11 @@ resource "docker_network" "traefik" {
   driver = "overlay"
 }
 
+resource "docker_network" "portainer_agent" {
+  name   = "portainer_agent"
+  driver = "overlay"
+}
+
 resource "docker_network" "prometheus" {
   name   = "prom_metrics"
   driver = "overlay"
