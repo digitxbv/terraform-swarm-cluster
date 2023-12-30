@@ -61,7 +61,7 @@ resource "docker_service" "grafana" {
     }
     placement {
       constraints = [
-        "node.role == manager"
+        "node.labels.monitoring == true"
       ]
     }
   }

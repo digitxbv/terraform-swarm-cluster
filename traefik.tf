@@ -89,7 +89,7 @@ resource "docker_service" "traefik" {
     }
     placement {
       constraints = [
-        "node.role == manager"
+        "node.labels.proxy == true"
       ]
     }
   }

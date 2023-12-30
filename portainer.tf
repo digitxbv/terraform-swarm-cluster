@@ -46,7 +46,7 @@ resource "docker_service" "portainer" {
     }
     placement {
       constraints = [
-        "node.role == manager"
+        "node.labels.manager == true"
       ]
     }
   }

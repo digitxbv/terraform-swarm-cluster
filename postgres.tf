@@ -32,7 +32,7 @@ resource "docker_service" "postgres" {
     }
     placement {
       constraints = [
-        "node.labels.type == db"
+        "node.labels.db == true"
       ]
     }
   }
@@ -73,7 +73,7 @@ resource "docker_service" "postgres_exporter" {
     }
     placement {
       constraints = [
-        "node.labels.type == db"
+        "node.labels.db == true"
       ]
     }
   }
@@ -126,7 +126,7 @@ resource "docker_service" "pgadmin" {
     }
     placement {
       constraints = [
-        "node.role == manager"
+        "node.labels.manager == true"
       ]
     }
   }

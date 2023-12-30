@@ -62,7 +62,7 @@ resource "docker_service" "prometheus" {
     }
     placement {
       constraints = [
-        "node.role == manager"
+        "node.labels.monitoring == true"
       ]
     }
   }

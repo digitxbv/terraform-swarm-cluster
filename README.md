@@ -15,9 +15,13 @@ If using Hetzner as VPS provider, you can use it on top of [Terraform Hcloud Swa
 Ensure to have initiated swarm cluster and update nodes with following self-explanatory labels:
 
 ```sh
-docker node update --label-add type=run swarm-worker-01
-docker node update --label-add type=run swarm-worker-02
-docker node update --label-add type=db swarm-storage-01
+docker node update --label-add manager=true swarm-manager-01
+docker node update --label-add proxy=true swarm-manager-01
+docker node update --label-add monitoring=true swarm-manager-01
+docker node update --label-add logging=true swarm-manager-01
+docker node update --label-add run=true swarm-worker-01
+docker node update --label-add run=true swarm-worker-02
+docker node update --label-add db=true swarm-storage-01
 ```
 
 Ensure to have the following docker config `/etc/docker/daemon.json` on all nodes:

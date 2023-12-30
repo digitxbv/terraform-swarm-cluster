@@ -42,7 +42,7 @@ resource "docker_service" "loki" {
     }
     placement {
       constraints = [
-        "node.role == manager"
+        "node.labels.logging == true"
       ]
     }
   }

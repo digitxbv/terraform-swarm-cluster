@@ -28,7 +28,7 @@ resource "docker_service" "mysql" {
     }
     placement {
       constraints = [
-        "node.labels.type == db"
+        "node.labels.db == true"
       ]
     }
   }
@@ -71,7 +71,7 @@ resource "docker_service" "mysql_exporter" {
     }
     placement {
       constraints = [
-        "node.labels.type == db"
+        "node.labels.db == true"
       ]
     }
   }
@@ -120,7 +120,7 @@ resource "docker_service" "phpmyadmin" {
     }
     placement {
       constraints = [
-        "node.role == manager"
+        "node.labels.manager == true"
       ]
     }
   }
