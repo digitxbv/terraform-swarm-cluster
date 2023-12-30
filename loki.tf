@@ -20,18 +20,15 @@ resource "docker_service" "loki" {
       }
       image = "grafana/loki:latest"
       user  = "root"
-      args = [
-        "-config.file=/mnt/config/loki-config.yml",
-      ]
       mounts {
-        target = "/tmp/loki"
+        target = "/loki"
         source = docker_volume.loki_data.id
         type   = "volume"
       }
       configs {
         config_id   = docker_config.loki_config.id
         config_name = docker_config.loki_config.name
-        file_name   = "/mnt/config/loki-config.yml"
+        file_name   = "/etc/loki/local-config.yaml"
       }
     }
     networks_advanced {
@@ -72,18 +69,10 @@ resource "docker_service" "promtail" {
         value = local.stack_namespaces.loki
       }
       image = "grafana/promtail:latest"
-      args = [
-        "-config.file=/mnt/config/promtail-config.yml"
-      ]
       configs {
         config_id   = docker_config.promtail_config.id
         config_name = docker_config.promtail_config.name
-        file_name   = "/mnt/config/promtail-config.yml"
-      }
-      mounts {
-        target = "/var/log"
-        source = "/var/log"
-        type   = "bind"
+        file_name   = "/etc/promtail/config.yml"
       }
       mounts {
         target = "/var/lib/docker/containers"
