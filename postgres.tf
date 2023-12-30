@@ -19,7 +19,7 @@ resource "docker_service" "postgres" {
       env = {
         POSTGRES_DB       = var.default_user,
         POSTGRES_USER     = var.default_user,
-        POSTGRES_PASSWORD = var.default_user,
+        POSTGRES_PASSWORD = var.postgres_password,
       }
       mounts {
         target = "/var/lib/postgresql/data"

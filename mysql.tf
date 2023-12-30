@@ -12,10 +12,10 @@ resource "docker_service" "mysql" {
       }
       image = "mysql:8"
       env = {
-        MYSQL_ROOT_PASSWORD = var.default_user,
+        MYSQL_ROOT_PASSWORD = var.mysql_root_password,
         MYSQL_DATABASE      = var.default_user,
         MYSQL_USER          = var.default_user,
-        MYSQL_PASSWORD      = var.default_user,
+        MYSQL_PASSWORD      = var.mysql_password,
       }
       mounts {
         target = "/var/lib/mysql"
