@@ -66,6 +66,10 @@ resource "docker_service" "prometheus" {
       ]
     }
   }
+
+  depends_on = [
+    docker_service.socat
+  ]
 }
 
 resource "docker_service" "cadvisor" {

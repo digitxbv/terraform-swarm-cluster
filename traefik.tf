@@ -105,6 +105,10 @@ resource "docker_service" "traefik" {
       publish_mode   = "host"
     }
   }
+
+  depends_on = [
+    docker_service.socat
+  ]
 }
 
 resource "docker_volume" "traefik_certificates" {
