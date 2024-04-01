@@ -10,12 +10,12 @@ resource "docker_service" "postgres" {
         label = "com.docker.stack.namespace"
         value = local.stack_namespaces.postgres
       }
-      image = "postgres:16-alpine"
-      # args = [
-      #   "-c",
-      #   "max_connections=500",
-      #   # "log_statement=all",
-      # ]
+      image = "postgres:16"
+      args = [
+        "-c",
+        "max_connections=500",
+        # "log_statement=all",
+      ]
       env = {
         POSTGRES_DB       = var.default_user,
         POSTGRES_USER     = var.default_user,
@@ -36,12 +36,6 @@ resource "docker_service" "postgres" {
       ]
     }
   }
-
-  # lifecycle {
-  #   ignore_changes = [
-  #     task_spec.container_spec.image,
-  #   ]
-  # }
 }
 
 resource "docker_service" "postgres_exporter" {
