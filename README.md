@@ -18,7 +18,6 @@ Ensure to have initiated swarm cluster and update nodes with following self-expl
 docker node update --label-add manager=true swarm-manager-01
 docker node update --label-add proxy=true swarm-manager-01
 docker node update --label-add monitoring=true swarm-manager-01
-docker node update --label-add logging=true swarm-manager-01
 docker node update --label-add run=true swarm-worker-01
 docker node update --label-add run=true swarm-worker-02
 docker node update --label-add db=true swarm-storage-01
@@ -32,10 +31,6 @@ Ensure to have the following docker config `/etc/docker/daemon.json` on all node
         "overlay": {
             "com.docker.network.driver.mtu": "1450"
         }
-    },
-    "log-driver": "json-file",
-    "log-opts": {
-        "labels-regex": "^.+"
     },
     "metrics-addr": "0.0.0.0:9323"
 }
