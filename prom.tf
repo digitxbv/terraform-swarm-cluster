@@ -67,6 +67,12 @@ resource "docker_service" "prometheus" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
+  }
+
   depends_on = [
     docker_service.socat
   ]
@@ -123,6 +129,12 @@ resource "docker_service" "cadvisor" {
     networks_advanced {
       name = docker_network.prometheus.id
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
   }
 }
 
@@ -185,6 +197,12 @@ resource "docker_service" "node_exporter" {
     networks_advanced {
       name = docker_network.prometheus.id
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
   }
 }
 

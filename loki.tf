@@ -43,6 +43,12 @@ resource "docker_service" "loki" {
       ]
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
+  }
 }
 
 resource "docker_service" "promtail" {
@@ -86,6 +92,12 @@ resource "docker_service" "promtail" {
     networks_advanced {
       name = docker_network.prometheus.id
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
   }
 }
 

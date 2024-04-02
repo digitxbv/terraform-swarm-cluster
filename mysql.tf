@@ -32,6 +32,12 @@ resource "docker_service" "mysql" {
       ]
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
+  }
 }
 
 resource "docker_service" "mysql_exporter" {
@@ -74,6 +80,12 @@ resource "docker_service" "mysql_exporter" {
         "node.labels.db == true"
       ]
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
   }
 }
 
@@ -123,6 +135,12 @@ resource "docker_service" "phpmyadmin" {
         "node.labels.manager == true"
       ]
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
   }
 }
 

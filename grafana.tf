@@ -65,6 +65,12 @@ resource "docker_service" "grafana" {
       ]
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
+  }
 }
 
 resource "docker_volume" "grafana_data" {

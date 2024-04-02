@@ -36,6 +36,12 @@ resource "docker_service" "postgres" {
       ]
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
+  }
 }
 
 resource "docker_service" "postgres_exporter" {
@@ -76,6 +82,12 @@ resource "docker_service" "postgres_exporter" {
         "node.labels.db == true"
       ]
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
   }
 }
 
@@ -129,6 +141,12 @@ resource "docker_service" "pgadmin" {
         "node.labels.manager == true"
       ]
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      task_spec[0].container_spec[0].image,
+    ]
   }
 }
 
