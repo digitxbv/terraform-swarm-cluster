@@ -56,9 +56,6 @@ resource "docker_service" "grafana" {
     networks_advanced {
       name = docker_network.prometheus.id
     }
-    networks_advanced {
-      name = docker_network.loki.id
-    }
     placement {
       constraints = [
         "node.labels.monitoring == true"

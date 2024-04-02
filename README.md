@@ -4,7 +4,7 @@ This Terraform project is intended to be used as a template for deploying an opi
 
 * Ingress routing via Traefik preconfigured for cloudflare SSL DNS challenge for wildcard domain
 * Complete monitoring with Prometheus, all next tools are already configured for being monitored
-* Logging with Loki and Grafana for dashboards
+* Grafana for dashboards
 * MySQL + PostgresSQL databases
 * UI web managers, as Portainer, phpMyAdmin, pgAdmin
 

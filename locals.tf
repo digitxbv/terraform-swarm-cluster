@@ -3,7 +3,6 @@ locals {
     socat      = "socat"
     traefik    = "traefik"
     prometheus = "prom"
-    loki       = "loki"
     grafana    = "grafana"
     pgadmin    = "pga"
     phpmyadmin = "pma"

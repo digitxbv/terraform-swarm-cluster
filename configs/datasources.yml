@@ -9,8 +9,3 @@ datasources:
     jsonData:
       httpMethod: POST
       timeInterval: 5s
-  - name: Loki
-    type: loki
-    uid: loki
-    url: http://loki_db:3100/
-    access: proxy
