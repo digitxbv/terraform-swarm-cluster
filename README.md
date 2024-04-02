@@ -36,4 +36,4 @@ Ensure to have the following docker config `/etc/docker/daemon.json` on all node
 }
 ```
 
-The `com.docker.network.driver.mtu` is required for avoiding MTU issues with Hetzner cloud. Use `metrics-addr` to obtain all Prometheus metrics from all services. Logs related config allow Promtail to parse properly output docker logs in order to link them for each stack, service or tasks from Swarm.
+The `com.docker.network.driver.mtu` is required for avoiding MTU issues with Hetzner cloud. Use `metrics-addr` to obtain all Prometheus metrics from all services.
