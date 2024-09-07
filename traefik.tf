@@ -46,14 +46,12 @@ resource "docker_service" "traefik" {
         label = "com.docker.stack.namespace"
         value = local.stack_namespaces.traefik
       }
-      image = "traefik:v2.10"
+      image = "traefik:v3.1"
       args = [
-        "--providers.docker=true",
-        "--providers.docker.exposedByDefault=false",
-        "--providers.docker.network=traefik_public",
-        "--providers.docker.swarmMode=true",
-        "--providers.docker.defaultRule=Host(`{{ index .Labels \"com.docker.stack.namespace\" }}.${var.domain}`)",
-        "--providers.docker.endpoint=tcp://socat_app:2375",
+        "--providers.swarm.endpoint=tcp://socat_app:2375",
+        "--providers.swarm.exposedByDefault=false",
+        "--providers.swarm.network=traefik_public",
+        "--providers.swarm.defaultRule=Host(`{{ index .Labels \"com.docker.stack.namespace\" }}.${var.domain}`)",
         "--entrypoints.web.address=:80",
         "--entrypoints.websecure.address=:443",
         "--entrypoints.web.http.redirections.entryPoint.to=websecure",
