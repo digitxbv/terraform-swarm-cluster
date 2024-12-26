@@ -44,7 +44,7 @@ resource "docker_service" "traefik" {
       }
       image = "traefik:v3"
       args = [
-        "--providers.swarm.endpoint=tcp://socat_app:2375",
+        "--providers.swarm.endpoint=tcp://socat_manager_app:2375",
         "--providers.swarm.exposedByDefault=false",
         "--providers.swarm.network=traefik_public",
         "--providers.swarm.defaultRule=Host(`{{ index .Labels \"com.docker.stack.namespace\" }}.${var.domain}`)",
@@ -109,7 +109,7 @@ resource "docker_service" "traefik" {
   }
 
   depends_on = [
-    docker_service.socat
+    docker_service.socat_manager
   ]
 }
 

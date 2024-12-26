@@ -1,5 +1,5 @@
-resource "docker_service" "socat" {
-  name = "socat_app"
+resource "docker_service" "socat_manager" {
+  name = "socat_manager_app"
   labels {
     label = "com.docker.stack.namespace"
     value = local.stack_namespaces.socat

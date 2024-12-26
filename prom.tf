@@ -66,7 +66,6 @@ resource "docker_service" "prometheus" {
       ]
     }
   }
-
   lifecycle {
     ignore_changes = [
       task_spec[0].container_spec[0].image,
@@ -74,7 +73,7 @@ resource "docker_service" "prometheus" {
   }
 
   depends_on = [
-    docker_service.socat
+    docker_service.socat_manager
   ]
 }
 
