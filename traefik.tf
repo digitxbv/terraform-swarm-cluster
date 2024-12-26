@@ -42,7 +42,7 @@ resource "docker_service" "traefik" {
         label = "com.docker.stack.namespace"
         value = local.stack_namespaces.traefik
       }
-      image = "traefik:v3.1"
+      image = "traefik:v3"
       args = [
         "--providers.swarm.endpoint=tcp://socat_app:2375",
         "--providers.swarm.exposedByDefault=false",
@@ -56,7 +56,7 @@ resource "docker_service" "traefik" {
         "--entrypoints.websecure.forwardedHeaders.insecure=true",
         "--entrypoints.websecure.http.tls.certResolver=le",
         "--certificatesresolvers.le.acme.dnschallenge=true",
-        "--certificatesresolvers.le.acme.dnschallenge.provider=cloudflare",
+        "--certificatesresolvers.le.acme.dnschallenge.provider=scaleway",
         "--certificatesresolvers.le.acme.email=${var.acme_email}",
         "--certificatesresolvers.le.acme.storage=/certificates/acme.json",
         "--api=true",
