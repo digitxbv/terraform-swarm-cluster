@@ -104,10 +104,6 @@ resource "docker_service" "phpmyadmin" {
     value = "websecure"
   }
   labels {
-    label = "traefik.http.routers.phpmyadmin.middlewares"
-    value = "admin-ip"
-  }
-  labels {
     label = "traefik.http.services.phpmyadmin.loadbalancer.server.port"
     value = "80"
   }

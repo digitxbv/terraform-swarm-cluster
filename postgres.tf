@@ -106,10 +106,6 @@ resource "docker_service" "pgadmin" {
     value = "websecure"
   }
   labels {
-    label = "traefik.http.routers.pgadmin.middlewares"
-    value = "admin-ip"
-  }
-  labels {
     label = "traefik.http.services.pgadmin.loadbalancer.server.port"
     value = "80"
   }
@@ -122,7 +118,7 @@ resource "docker_service" "pgadmin" {
       image = "dpage/pgadmin4:latest"
       env = {
         PGADMIN_DEFAULT_EMAIL    = var.default_email,
-        PGADMIN_DEFAULT_PASSWORD = var.default_user,
+        PGADMIN_DEFAULT_PASSWORD = var.default_pgadmin_password,
       }
       mounts {
         target = "/var/lib/pgadmin"

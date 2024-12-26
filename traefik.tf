@@ -14,11 +14,7 @@ resource "docker_service" "traefik" {
   }
   labels {
     label = "traefik.http.middlewares.admin-auth.basicauth.users"
-    value = var.http_basic_auth
-  }
-  labels {
-    label = "traefik.http.middlewares.admin-ip.ipwhitelist.sourcerange"
-    value = join(",", var.my_ip_addresses)
+    value = local.htpasswd
   }
   labels {
     label = "traefik.enable"
@@ -34,7 +30,7 @@ resource "docker_service" "traefik" {
   }
   labels {
     label = "traefik.http.routers.api.middlewares"
-    value = "admin-ip,admin-auth"
+    value = "admin-auth"
   }
   labels {
     label = "traefik.http.services.api.loadbalancer.server.port"
@@ -68,7 +64,8 @@ resource "docker_service" "traefik" {
         "--metrics.prometheus=true",
       ]
       env = {
-        CLOUDFLARE_DNS_API_TOKEN = var.cloudflare_api_token,
+        SCW_ACCESS_KEY = var.scaleway_dns_access_key,
+        SCW_SECRET_KEY = var.scaleway_dns_secret_key,
       }
       mounts {
         target = "/certificates"

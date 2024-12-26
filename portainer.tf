@@ -13,10 +13,6 @@ resource "docker_service" "portainer" {
     value = "websecure"
   }
   labels {
-    label = "traefik.http.routers.portainer.middlewares"
-    value = "admin-ip"
-  }
-  labels {
     label = "traefik.http.services.portainer.loadbalancer.server.port"
     value = "9000"
   }

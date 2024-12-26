@@ -21,10 +21,6 @@ resource "docker_service" "grafana" {
     value = "websecure"
   }
   labels {
-    label = "traefik.http.routers.grafana.middlewares"
-    value = "admin-ip"
-  }
-  labels {
     label = "traefik.http.services.grafana.loadbalancer.server.port"
     value = "3000"
   }

@@ -22,7 +22,7 @@ resource "docker_service" "prometheus" {
   }
   labels {
     label = "traefik.http.routers.prom.middlewares"
-    value = "admin-ip,admin-auth"
+    value = "admin-auth"
   }
   labels {
     label = "traefik.http.services.prom.loadbalancer.server.port"
