@@ -55,8 +55,8 @@ resource "docker_service" "traefik" {
         "--entrypoints.web.http.redirections.entrypoint.permanent=true",
         "--entrypoints.websecure.forwardedHeaders.insecure=true",
         "--entrypoints.websecure.http.tls.certResolver=le",
-        "--certificatesresolvers.le.acme.httpchallenge=true"
-        "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
+        "--certificatesresolvers.le.acme.httpchallenge=true",
+        "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web",
         "--certificatesresolvers.le.acme.email=${var.acme_email}",
         "--certificatesresolvers.le.acme.storage=/certificates/acme.json",
         "--api=true",
