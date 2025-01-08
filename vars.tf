@@ -10,15 +10,6 @@ variable "acme_email" {
   type = string
 }
 
-variable "scaleway_dns_access_key" {
-  type = string
-}
-
-variable "scaleway_dns_secret_key" {
-  type      = string
-  sensitive = true
-}
-
 variable "http_basic_password" {
   type      = string
   sensitive = true
