@@ -55,18 +55,14 @@ resource "docker_service" "traefik" {
         "--entrypoints.web.http.redirections.entrypoint.permanent=true",
         "--entrypoints.websecure.forwardedHeaders.insecure=true",
         "--entrypoints.websecure.http.tls.certResolver=le",
-        "--certificatesresolvers.le.acme.dnschallenge=true",
-        "--certificatesresolvers.le.acme.dnschallenge.provider=scaleway",
+        "--certificatesresolvers.le.acme.httpchallenge=true"
+        "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
         "--certificatesresolvers.le.acme.email=${var.acme_email}",
         "--certificatesresolvers.le.acme.storage=/certificates/acme.json",
         "--api=true",
         "--accesslog=true",
         "--metrics.prometheus=true",
       ]
-      env = {
-        SCW_ACCESS_KEY = var.scaleway_dns_access_key,
-        SCW_SECRET_KEY = var.scaleway_dns_secret_key,
-      }
       mounts {
         target = "/certificates"
         source = docker_volume.traefik_certificates.id
