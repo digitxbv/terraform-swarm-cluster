@@ -50,6 +50,8 @@ resource "docker_service" "portainer" {
   lifecycle {
     ignore_changes = [
       task_spec[0].container_spec[0].image,
+      task_spec[0].networks_advanced,
+      task_spec[0].placement[0].platforms,
     ]
   }
 }
@@ -89,6 +91,8 @@ resource "docker_service" "portainer_agent" {
   lifecycle {
     ignore_changes = [
       task_spec[0].container_spec[0].image,
+      task_spec[0].networks_advanced,
+      task_spec[0].placement[0].platforms,
     ]
   }
 }

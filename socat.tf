@@ -37,6 +37,8 @@ resource "docker_service" "socat_manager" {
   lifecycle {
     ignore_changes = [
       task_spec[0].container_spec[0].image,
+      task_spec[0].networks_advanced,
+      task_spec[0].placement[0].platforms,
     ]
   }
 }

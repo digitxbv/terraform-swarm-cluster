@@ -69,6 +69,8 @@ resource "docker_service" "prometheus" {
   lifecycle {
     ignore_changes = [
       task_spec[0].container_spec[0].image,
+      task_spec[0].networks_advanced,
+      task_spec[0].placement[0].platforms,
     ]
   }
 
@@ -133,6 +135,8 @@ resource "docker_service" "cadvisor" {
   lifecycle {
     ignore_changes = [
       task_spec[0].container_spec[0].image,
+      task_spec[0].networks_advanced,
+      task_spec[0].placement[0].platforms,
     ]
   }
 }
@@ -201,6 +205,8 @@ resource "docker_service" "node_exporter" {
   lifecycle {
     ignore_changes = [
       task_spec[0].container_spec[0].image,
+      task_spec[0].networks_advanced,
+      task_spec[0].placement[0].platforms,
     ]
   }
 }
